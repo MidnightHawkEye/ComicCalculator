@@ -3,6 +3,7 @@ const buttons = document.querySelectorAll("button");
 
 
 let = currentInput = "";
+
 buttons.forEach(button => {
   button.addEventListener("click", () => {      // create for very button press a event list
     const value = button.textContent;           // is exactly the text in the button
@@ -54,3 +55,30 @@ document.addEventListener("keydown", (event) => { // press directly by the keybo
     display.textContent = currentInput;
   }
 });
+
+
+const calculator = document.querySelector(".calculator");
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    const value = button.textContent;
+
+    if (value === "C") {
+
+    calculator.classList.add("slide-out");
+
+    calculator.addEventListener("animationend", function handler() {
+    
+    currentInput = "";
+    display.textContent = "0";
+
+    calculator.classList.remove("slide-out");
+
+    calculator.removeEventListener("animationend", handler);
+      });
+    }
+
+  });
+});
+
+

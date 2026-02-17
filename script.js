@@ -1,8 +1,9 @@
 const display = document.getElementById("display");
 const buttons = document.querySelectorAll("button");
-
-
+const history = document.getElementById("history");
+const calculator = document.querySelector(".calculator");
 let = currentInput = "";
+
 
 buttons.forEach(button => {
   button.addEventListener("click", () => {      // create for very button press a event list
@@ -12,14 +13,20 @@ buttons.forEach(button => {
       currentInput = "";
       display.textContent = "0";
     } 
-    else if (value === "=") {                   // is to connected together the both numbers 
-      try {                                     // all other you press in makes a Error
-        currentInput = eval(currentInput);
-        display.textContent = currentInput;
+    else if (value === "=") {
+      try {
+        const expression = currentInput;      // speichert z.B. "5*3"
+        const result = eval(currentInput);    // berechnet Ergebnis
+
+        history.textContent = expression + " = " + result;
+
+        currentInput = result;
+        display.textContent = result;
+
       } catch {
         display.textContent = "Fail!";
       }
-    } 
+    }
     else {
       currentInput += value;                    // else = if anything is right this is the result
       display.textContent = currentInput;
@@ -54,10 +61,16 @@ document.addEventListener("keydown", (event) => { // press directly by the keybo
     currentInput += key;
     display.textContent = currentInput;
   }
+
+   else if (key === "Delete") {
+  document.getElementById("reset").click();
+}
+
+
+  
 });
 
 
-const calculator = document.querySelector(".calculator");
 
 buttons.forEach(button => {
   button.addEventListener("click", () => {
@@ -80,5 +93,6 @@ buttons.forEach(button => {
 
   });
 });
+
 
 

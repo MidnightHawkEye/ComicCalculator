@@ -1,98 +1,35 @@
+let currentInput = "";
+
 const display = document.getElementById("display");
 const buttons = document.querySelectorAll("button");
-const history = document.getElementById("history");
-const calculator = document.querySelector(".calculator");
-let = currentInput = "";
+const historyBox = document.querySelector(".history");
 
-
-buttons.forEach(button => {
-  button.addEventListener("click", () => {      // create for very button press a event list
-    const value = button.textContent;           // is exactly the text in the button
-
-    if (value === "C") {                        // next three lines is if you press C deleted the List completed reset
-      currentInput = "";
-      display.textContent = "0";
-    } 
-    else if (value === "=") {
-      try {
-        const expression = currentInput;      // speichert z.B. "5*3"
-        const result = eval(currentInput);    // berechnet Ergebnis
-
-        history.textContent = expression + " = " + result;
-
-        currentInput = result;
-        display.textContent = result;
-
-      } catch {
-        display.textContent = "Fail!";
-      }
-    }
-    else {
-      currentInput += value;                    // else = if anything is right this is the result
-      display.textContent = currentInput;
-    }
-  });
-});
-
-
-document.addEventListener("keydown", (event) => { //output logger
-  console.log(event.key);
-});
-
-
-document.addEventListener("keydown", (event) => { // press directly by the keyboard
-  const key = event.key;
-
-  if (key === "Enter") {                          // its for the enter button
-    try {
-      currentInput = eval(currentInput);
-      display.textContent = currentInput;
-    } catch {
-      display.textContent = "Fail!";
-    }
-  }
-
-  else if (key === "Backspace") {                 // its for the backspace button
-    currentInput = currentInput.slice(0, -1);
-    display.textContent = currentInput || "0";
-  }
-
-  else if ("0123456789+-*/.".includes(key)) {     // its for the numbers
-    currentInput += key;
-    display.textContent = currentInput;
-  }
-
-   else if (key === "Delete") {
-  document.getElementById("reset").click();
+function addInput(value) {
+  currentInput += value;
+  display.textContent = currentInput;
 }
 
+function reset() {
+  currentInput = "";
+  display.textContent = "0";
+}
 
-  
-});
+function calculate() {
+  const expression = currentInput;
+  const result = eval(currentInput);
 
+  historyBox.textContent = expression + " = " + result;
 
+  currentInput = result;
+  display.textContent = result;
+}
 
 buttons.forEach(button => {
   button.addEventListener("click", () => {
     const value = button.textContent;
 
-    if (value === "C") {
-
-    calculator.classList.add("slide-out");
-
-    calculator.addEventListener("animationend", function handler() {
-    
-    currentInput = "";
-    display.textContent = "0";
-
-    calculator.classList.remove("slide-out");
-
-    calculator.removeEventListener("animationend", handler);
-      });
-    }
-
+    if (value === "C") reset();
+    else if (value === "=") calculate();
+    else addInput(value);
   });
 });
-
-
-

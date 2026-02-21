@@ -3,10 +3,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    
     font-family: Comic Sans MS, cursive;
+  
 }
-
 
 .calculator {
     background: #ffcc00;
@@ -48,6 +48,16 @@ button:hover {
    display: flex;
    flex-direction: column;
    align-items: center;
+   
+}
+
+.container-formula {
+  display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: absolute;
+   flex: 1;
+   margin-top: 1100px;
 }
 
 h1 {
@@ -169,7 +179,8 @@ h1 {
 
 .history {
   background: white;
-    height: 50px;
+    height: 105px;
+    width: 100%;
     margin-bottom: 15px;
     text-align: right;
     padding: 10px;

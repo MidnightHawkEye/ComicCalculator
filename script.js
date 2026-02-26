@@ -7,7 +7,6 @@ const historyBox = document.querySelector(".history");
 
 
 /* ------- Merkt was gedrückt wurde Eingabe ----------*/
-
 function addInput(value) {
   currentInput += value;
   display.textContent = currentInput;
@@ -15,7 +14,6 @@ function addInput(value) {
 
 
 /* ------- Reset (C) ----------*/
-
 function reset() {
   currentInput = "";
   display.textContent = "0";
@@ -23,20 +21,20 @@ function reset() {
 
 
 /* ------- Rechnen ----------*/
-
 function calculate() {
   const expression = currentInput;
   const result = eval(currentInput);
 
+   // ← wichtig
   historyBox.textContent = expression + " = " + result;
+  
+  currentInput = result.toString();  
+  display.textContent = currentInput;
 
-  currentInput = result;
-  display.textContent = result;
 }
 
 
 /* ------- Eventlister ----------*/
-
 buttons.forEach(button => {
   button.addEventListener("click", () => {
     const value = button.textContent;
@@ -49,7 +47,6 @@ buttons.forEach(button => {
 
 
 /* ------- Verhindert das ein Operator am anfang kommt ----------*/
-
 function addInput(value) {
 
   const operators = "*/";

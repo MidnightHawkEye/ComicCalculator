@@ -49,7 +49,7 @@ buttons.forEach(button => {
 /* ------- Verhindert das ein Operator am anfang kommt ----------*/
 function addInput(value) {
 
-  const operators = "*/";
+  const operators = "+*/";
 
   // 1️⃣ Verhindern dass erster Wert ein Operator ist
   if (currentInput === "" && operators.includes(value)) {

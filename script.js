@@ -46,18 +46,23 @@ buttons.forEach(button => {
 });
 
 
+
+
+
+
 /* ------- Verhindert das ein Operator am anfang kommt ----------*/
 function addInput(value) {
 
   const operators = "+*/";
-
+  const lastChar = currentInput.slice(-1);
+  
   // 1️⃣ Verhindern dass erster Wert ein Operator ist
   if (currentInput === "" && operators.includes(value)) {
     return;
   }
 
   // 2️⃣ Verhindern dass zwei Operatoren hintereinander kommen
-  const lastChar = currentInput.slice(-1);
+  
 
   if (operators.includes(lastChar) && operators.includes(value)) {
     return;
